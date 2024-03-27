@@ -24,7 +24,6 @@ public class Account {
     @Column(name = "id")
     private UUID id;
 
-
     @Column(name = "number", nullable = false)
     private String number;
 

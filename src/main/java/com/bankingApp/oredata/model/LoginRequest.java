@@ -1,4 +1,4 @@
-package com.bankingApp.oredata.controller;
+package com.bankingApp.oredata.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.bankingApp.oredata.service;
 
 
-import com.bankingApp.oredata.controller.LoginRequest;
+import com.bankingApp.oredata.model.LoginRequest;
 import com.bankingApp.oredata.entity.User;
 import com.bankingApp.oredata.model.AuthenticationResponse;
 import com.bankingApp.oredata.model.UserDto;
