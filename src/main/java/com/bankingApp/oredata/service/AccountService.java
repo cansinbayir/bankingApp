@@ -89,4 +89,25 @@ public class AccountService  {
             return false;
         }
     }
+
+    public boolean deleteAccount(UUID accountId) {
+        try {
+            accountRepository.deleteById(accountId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public AccountDto getAccountDetails(UUID accountId) {
+        Optional<Account> optionalAccount = accountRepository.findById(accountId);
+
+        if (optionalAccount.isPresent()) {
+            Account account = optionalAccount.get();
+            return AccountMapper.mapToAccountDto(account);
+        } else {
+            return null;
+        }
+    }
+
 }
