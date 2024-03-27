@@ -5,21 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class AccountDto {
+
     private UUID id;
-    private String username;
-    private String password;
-    private String email;
+    private String number;
+    private String name;
+    private BigDecimal balance;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Set<AccountDto> accounts;
+    private UUID userId;
 }
-
