@@ -13,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,21 +52,26 @@ public class AccountService  {
         if (name != null && number != null) {
             accounts = accounts.stream()
                     .filter(account -> account.getName().equals(name) && account.getNumber().equals(number))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(LinkedHashSet::new));
         } else if (name != null) {
             accounts = accounts.stream()
                     .filter(account -> account.getName().equals(name))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(LinkedHashSet::new));
         } else if (number != null) {
             accounts = accounts.stream()
                     .filter(account -> account.getNumber().equals(number))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(LinkedHashSet::new));
         }
 
-        return accounts.stream()
-                .map(account -> new GetAccountResponse(account.getName(), account.getNumber()))
-                .collect(Collectors.toSet());
+        // Sort accounts by createdAt in descending order (most recent first)
+        List<Account> sortedAccounts = accounts.stream()
+                .sorted(Comparator.comparing(Account::getCreatedAt).reversed())
+                .toList();
 
+        // Convert to GetAccountResponse and return as a Set
+        return sortedAccounts.stream()
+                .map(account -> new GetAccountResponse(account.getId(), account.getName(), account.getNumber(), account.getCreatedAt()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
 

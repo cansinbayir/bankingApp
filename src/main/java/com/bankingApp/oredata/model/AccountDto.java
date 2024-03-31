@@ -19,7 +19,5 @@ public class AccountDto {
     private String number;
     private String name;
     private BigDecimal balance;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private UUID userId;
 }

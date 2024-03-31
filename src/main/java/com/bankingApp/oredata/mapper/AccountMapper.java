@@ -4,6 +4,7 @@ import com.bankingApp.oredata.model.AccountDto;
 import com.bankingApp.oredata.entity.Account;
 import com.bankingApp.oredata.entity.User;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,8 +17,6 @@ public class AccountMapper {
                 account.getNumber(),
                 account.getName(),
                 account.getBalance(),
-                account.getCreatedAt(),
-                account.getUpdatedAt(),
                 account.getUser().getId()
         );
     }
@@ -33,18 +32,17 @@ public class AccountMapper {
     }
 
     public static Account mapToAccount(AccountDto accountDto, User user) {
+        LocalDateTime now = LocalDateTime.now();
         return new Account(
                 accountDto.getId(),
                 accountDto.getNumber(),
                 accountDto.getName(),
                 accountDto.getBalance(),
-                accountDto.getCreatedAt(),
-                accountDto.getUpdatedAt(),
+                now,
+                now,
                 user,
                 null,
                 null
-
-
         );
     }
 }
