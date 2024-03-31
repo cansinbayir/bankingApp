@@ -25,7 +25,7 @@ public class AccountController {
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/create")
     public ResponseEntity<?> createAccount(@RequestBody AccountDto account) {
         AccountDto createdAccount = accountService.createAccount(account);
@@ -36,6 +36,7 @@ public class AccountController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/get-accounts")
     public ResponseEntity<Set<GetAccountResponse>> getAccounts(@RequestParam(required = true) UUID userId,
                                                                @RequestParam(required = false) String name,
@@ -46,7 +47,7 @@ public class AccountController {
         }
         return  new ResponseEntity<>(accounts, HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{accountId}")
     public ResponseEntity<?> updateAccount(@PathVariable String accountId,
                                            @RequestBody AccountDto updateAccountRequest) {
@@ -58,7 +59,7 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update account.");
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{accountId}")
     public ResponseEntity<?> deleteAccount(@PathVariable UUID accountId) {
         boolean isDeleted = accountService.deleteAccount(accountId);
@@ -69,7 +70,7 @@ public class AccountController {
             return new ResponseEntity<>("Failed to delete account", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/get-account-details/{accountId}")
     public ResponseEntity<?> getAccountDetails(@PathVariable UUID accountId) {
         AccountDto accountDetails = accountService.getAccountDetails(accountId);
