@@ -1,8 +1,8 @@
 package com.bankingApp.oredata.mapper;
 
-import com.bankingApp.oredata.model.TransactionDto;
 import com.bankingApp.oredata.entity.Account;
 import com.bankingApp.oredata.entity.Transaction;
+import com.bankingApp.oredata.model.TransactionDto;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,7 +15,6 @@ public class TransactionMapper {
                 transaction.getSourceAccount().getId(),
                 transaction.getTargetAccount().getId(),
                 transaction.getAmount(),
-                transaction.getTransactionDate(),
                 mapToTransactionStatusDto(transaction.getStatus())
         );
     }
@@ -32,20 +31,13 @@ public class TransactionMapper {
                 sourceAccount,
                 targetAccount,
                 transactionDto.getAmount(),
-                transactionDto.getTransactionDate(),
-                mapToTransactionStatus(transactionDto.getStatus())
+                null, // transactionDate is now null
+                Transaction.TransactionStatus.FAILED // Initial status set to FAILED
         );
-
-
     }
 
     private static TransactionDto.TransactionStatusDto mapToTransactionStatusDto(Transaction.TransactionStatus status) {
         return status == Transaction.TransactionStatus.SUCCESS ?
                 TransactionDto.TransactionStatusDto.SUCCESS : TransactionDto.TransactionStatusDto.FAILED;
-    }
-
-    private static Transaction.TransactionStatus mapToTransactionStatus(TransactionDto.TransactionStatusDto status) {
-        return status == TransactionDto.TransactionStatusDto.SUCCESS ?
-                Transaction.TransactionStatus.SUCCESS : Transaction.TransactionStatus.FAILED;
     }
 }

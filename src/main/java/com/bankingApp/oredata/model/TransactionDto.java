@@ -6,23 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class TransactionDto {
+
     public enum TransactionStatusDto {
         SUCCESS,
         FAILED
     }
+
     private Long id;
     private UUID sourceAccount;
     private UUID targetAccount;
     private BigDecimal amount;
-    private LocalDateTime transactionDate;
     private TransactionStatusDto status;
 
+    // Constructors, getters, and setters omitted for brevity
 }

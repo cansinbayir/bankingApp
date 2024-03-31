@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "transactions")
 public class Transaction {
+
     public enum TransactionStatus {
         SUCCESS,
         FAILED
@@ -44,6 +45,5 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
-
+    // Constructors, getters, and setters omitted for brevity
 }
-
