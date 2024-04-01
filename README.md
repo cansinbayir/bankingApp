@@ -7,7 +7,6 @@ BankingApp is a backend service for a banking application designed to simplify m
 - **Spring Boot** - Framework for building modern, spring-based applications.
 - **Spring Data JPA** - For database operations.
 - **Spring Security** - For authentication and authorization.
-- **H2 Database** - In-memory database for development and testing purposes.
 - **PostgreSQL** - For production database.
 - **Swagger 3 (OpenAPI)** - For API documentation and testing.
 
